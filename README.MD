@@ -1,136 +1,221 @@
-# Salon Appointment Scheduler
+💈 Salon Appointment Scheduler
 
-A command-line application built with **Bash** and **PostgreSQL** as part of the [freeCodeCamp Relational Database Certification](https://www.freecodecamp.org/).
+A command-line application developed using Bash and PostgreSQL as part of the freeCodeCamp Relational Database Certification. This project focuses on building a customer appointment system, managing salon services, and automating database operations through shell scripting.
 
-The project focuses on creating a salon appointment system that allows users to view available services, register customers, recognize returning customers, and schedule appointments using Bash scripts and SQL commands.
+Project Overview
 
-## Project Overview
+The Salon Appointment Scheduler allows users to view available salon services, register new customers, recognize returning customers, and schedule appointments.
 
-The `salon` database organizes salon services, customer information, and appointments into three related tables. The application uses Bash to interact with PostgreSQL through the `psql` command-line tool.
+The project demonstrates how to integrate Bash scripts with PostgreSQL, manage customer records, validate user input, and store appointment information using relational database concepts.
 
-It uses primary keys, foreign keys, unique constraints, and SQL queries to maintain data integrity and manage customer appointments.
+Technologies Used
 
-## Technologies Used
+Bash – Command-line scripting and application logic.
 
-- Bash
-- PostgreSQL
-- SQL
-- psql (PostgreSQL Interactive Terminal)
+PostgreSQL – Relational database management system.
 
-## Database Structure
+SQL – Database creation, manipulation, and querying.
 
-The database contains three tables:
+psql – Connecting Bash scripts to PostgreSQL.
 
-| Table | Description |
-|---|---|
-| `services` | Stores available salon services, such as cut, color, perm, style, and trim. |
-| `customers` | Stores customer names and unique phone numbers. |
-| `appointments` | Stores appointment times and references the corresponding customer and service. |
+Git & GitHub – Version control and project storage.
 
-## 🔗 Database Relationships
+🗄️ Database Structure
 
-The database uses foreign keys to establish relationships between tables.
+The database consists of three main tables:
 
-```text
+1. Services
+
+Column
+
+Description
+
+service_id
+
+Primary key with auto-incrementing ID
+
+name
+
+Name of the salon service
+
+2. Customers
+
+Column
+
+Description
+
+customer_id
+
+Primary key with auto-incrementing ID
+
+name
+
+Customer's name
+
+phone
+
+Unique customer phone number
+
+3. Appointments
+
+Column
+
+Description
+
+appointment_id
+
+Primary key with auto-incrementing ID
+
+customer_id
+
+Foreign key referencing customers
+
+service_id
+
+Foreign key referencing services
+
+time
+
+Requested appointment time
+
+Database Relationships
+
+The appointments table uses two foreign keys to reference the customers and services tables.
+
 customers          services
     |                  |
     |                  |
     v                  v
        appointments
-```
 
-- Each appointment belongs to one customer.
-- Each appointment is associated with one salon service.
-- Each customer can have multiple appointments.
-- Each service can be selected for multiple appointments.
+Each appointment belongs to one customer.
 
-## Features
+Each appointment is associated with one salon service.
 
-- Display available salon services with numbered options.
-- Validate service selections and handle invalid inputs.
-- Register new customers using their phone numbers.
-- Recognize returning customers through existing records.
-- Retrieve customer information from the database.
-- Schedule appointments for selected services.
-- Store appointment details in PostgreSQL.
+Each customer can have multiple appointments.
 
-## SQL and Bash Concepts Practiced
+Each service can be selected for multiple appointments.
 
-- Creating databases using `CREATE DATABASE`.
-- Connecting to databases using `\c`.
-- Creating tables using `CREATE TABLE`.
-- Defining primary keys and foreign keys.
-- Using auto-incrementing IDs with `SERIAL`.
-- Applying `NOT NULL` and `UNIQUE` constraints.
-- Inserting records using `INSERT INTO`.
-- Retrieving records using `SELECT`.
-- Checking existing customer records using SQL queries.
-- Connecting Bash scripts to PostgreSQL using `psql`.
-- Using Bash variables to store query results.
-- Applying conditional statements using `if` and `else`.
-- Using loops with `while` for input validation.
-- Automating database operations through shell scripting.
+What I Learned
 
-## ▶️ How to Run
+SQL and PostgreSQL
 
-1. Install PostgreSQL.
-2. Open the terminal.
-3. Connect to PostgreSQL:
+Creating databases and relational tables.
 
-```bash
+Using PRIMARY KEY and FOREIGN KEY constraints.
+
+Applying UNIQUE and NOT NULL constraints.
+
+Using SERIAL for auto-incrementing IDs.
+
+Inserting records using INSERT INTO.
+
+Retrieving records using SELECT.
+
+Maintaining relationships between customers, services, and appointments.
+
+Bash Scripting
+
+Creating and executing Bash scripts.
+
+Connecting Bash scripts to PostgreSQL using psql.
+
+Using variables to store SQL query results.
+
+Reading user input using read.
+
+Applying conditional statements using if and else.
+
+Using while loops for input validation.
+
+Automating database operations through shell scripting.
+
+Database Operations
+
+Checking whether a customer already exists.
+
+Registering new customers using unique phone numbers.
+
+Retrieving existing customer information.
+
+Inserting appointment records.
+
+Linking appointments to the correct customer and service.
+
+Debugging and Problem Solving
+
+Troubleshooting SQL queries and Bash syntax.
+
+Validating user selections.
+
+Handling new and returning customer records.
+
+Verifying database records and relationships.
+
+Improving script logic through testing.
+
+Project Files
+
+File
+
+Description
+
+salon.sh
+
+Bash script that handles service selection, customer registration, and appointment scheduling.
+
+salon.sql
+
+Database backup containing SQL commands to rebuild the database.
+
+How to Run
+
+Install PostgreSQL.
+
+Open the terminal.
+
+Connect to PostgreSQL:
+
 psql --username=freecodecamp --dbname=postgres
-```
 
-4. Create the database:
+Create the database:
 
-```sql
 CREATE DATABASE salon;
-```
 
-5. Connect to the database:
+Connect to the database:
 
-```sql
 \c salon
-```
 
-6. Execute the SQL commands to create the tables, establish relationships, and insert the available salon services.
+Execute the SQL commands to create the tables, establish relationships, and insert the available salon services.
 
-7. Navigate to the project directory and make the Bash script executable:
+Make the Bash script executable:
 
-```bash
 chmod +x salon.sh
-```
 
-8. Run the application:
+Run the application:
 
-```bash
 ./salon.sh
-```
 
-## 💾 Database Backup
+💾 Database Backup
 
 To export the database:
 
-```bash
 pg_dump -cC --inserts -U freecodecamp salon > salon.sql
-```
 
 To restore the database:
 
-```bash
 psql -U postgres < salon.sql
-```
 
-## Learning Objectives
+Project Goal
 
-Through this project, I practiced designing relational databases, establishing relationships between tables, managing customer records, and writing SQL queries using PostgreSQL.
+The goal of this project was to strengthen my understanding of relational databases while learning how to integrate Bash scripting with PostgreSQL.
 
-I also gained experience integrating Bash scripting with PostgreSQL, handling user input, applying conditional logic, and automating database operations through a command-line application.
+Completing this project helped me develop practical skills in database management, SQL querying, shell scripting, input validation, and automating database operations.
 
-## Author
+👨‍💻 Author
 
-**Raven Jay**
+Raven Jay
 
 IT Graduate | Software Developer | Aspiring Cybersecurity Professional
 
-*Passionate about technology, database management, and software development, with a strong focus on continuously building skills toward a secure career in cybersecurity.*
+Passionate about technology, database management, and software development, with a strong focus on continuously building skills toward a secure career in cybersecurity.
